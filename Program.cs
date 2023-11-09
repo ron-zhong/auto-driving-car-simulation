@@ -1,8 +1,17 @@
 ﻿using System;
 
+
+Console.WriteLine("1.Please indicate the width and height of the field, like: 10 10.");
 string inputLine1 = Console.ReadLine();
+Console.WriteLine();
+
+Console.WriteLine("2.Please indicate the current position and facing direction of the car, like: 1 2 N.");
 string inputLine2 = Console.ReadLine();
+Console.WriteLine();
+
+Console.WriteLine("Please enter the subsequent commands it will execute, like: FFRFFFRRLF");
 string inputLine3 = Console.ReadLine();
+Console.WriteLine();
 
 // Parse the field width and height
 string[] fieldDimensions = inputLine1.Split(' ');
@@ -21,40 +30,24 @@ foreach (char command in inputLine3)
     if (command == 'L')
     {
         // Rotate the car 90 degrees to the left
-        switch (direction)
+        direction = direction switch
         {
-            case 'N':
-                direction = 'W';
-                break;
-            case 'W':
-                direction = 'S';
-                break;
-            case 'S':
-                direction = 'E';
-                break;
-            case 'E':
-                direction = 'N';
-                break;
-        }
+            'N' => 'W',
+            'W' => 'S',
+            'S' => 'E',
+            'E' => 'N',
+        };
     }
     else if (command == 'R')
     {
         // Rotate the car 90 degrees to the right
-        switch (direction)
+        direction = direction switch
         {
-            case 'N':
-                direction = 'E';
-                break;
-            case 'E':
-                direction = 'S';
-                break;
-            case 'S':
-                direction = 'W';
-                break;
-            case 'W':
-                direction = 'N';
-                break;
-        }
+            'N' => 'E',
+            'E' => 'S',
+            'S' => 'W',
+            'W' => 'N',
+        };
     }
     else if (command == 'F')
     {
@@ -82,4 +75,5 @@ foreach (char command in inputLine3)
 }
 
 // Print the final position and direction
+Console.WriteLine("This is the final position and direction of the car: {x} {y} {direction}");
 Console.WriteLine($"{x} {y} {direction}");
