@@ -1,16 +1,19 @@
-﻿using System;
-
-
-Console.WriteLine("1.Please indicate the width and height of the field, like: 10 10.");
-string inputLine1 = Console.ReadLine();
+﻿Console.WriteLine("1.Please indicate the width and height of the field, like: 10 10.");
+string inputLine1 = Console.ReadLine() ?? string.Empty;
 Console.WriteLine();
 
 Console.WriteLine("2.Please indicate the current position and facing direction of the car, like: 1 2 N.");
-string inputLine2 = Console.ReadLine();
+string inputLine2 = Console.ReadLine() ?? string.Empty;
 Console.WriteLine();
 
+if( inputLine1 == string.Empty || inputLine2 == string.Empty)
+{
+    Console.WriteLine("Please enter the correct format.");
+    return;
+}
+
 Console.WriteLine("Please enter the subsequent commands it will execute, like: FFRFFFRRLF");
-string inputLine3 = Console.ReadLine();
+string inputLine3 = Console.ReadLine() ?? string.Empty;
 Console.WriteLine();
 
 // Parse the field width and height
@@ -36,6 +39,7 @@ foreach (char command in inputLine3)
             'W' => 'S',
             'S' => 'E',
             'E' => 'N',
+            _ => direction
         };
     }
     else if (command == 'R')
@@ -47,6 +51,7 @@ foreach (char command in inputLine3)
             'E' => 'S',
             'S' => 'W',
             'W' => 'N',
+            _ => direction
         };
     }
     else if (command == 'F')
